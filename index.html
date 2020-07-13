@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Catch Me</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body,
+    html {
+        height: 100%;
+        font-family: sans-serif;
+        font-size: 18px;
+    }
+    
+    .container {
+        max-width: 550px;
+        width: 100%;
+        margin: 0 auto;
+        background: linear-gradient(to right, rgb(131, 163, 101), rgb(214, 110, 155));
+        border: groove 15px grey;
+        margin-top: 5rem;
+    }
+    
+    .grid>div {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    
+    img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+    
+    .square {
+        width: 23%;
+        position: relative;
+    }
+    
+    .hole {
+        position: absolute;
+        left: 0;
+    }
+    
+    .title-header,
+    .title-timer,
+    .title-score,
+    .no_moles {
+        padding: 0.3em;
+        font-family: cursive;
+        letter-spacing: 1px;
+        word-spacing: 1px;
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+    
+    .timer,
+    .score,
+    .moles {
+        padding: 0.3em 0.5em;
+        background: #fff;
+        border-radius: 50%;
+    }
+    
+    .control-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.5em;
+    }
+    
+    button {
+        padding: 0.5em 1.3em;
+        margin: 0.2em;
+        font-size: 1rem;
+        border-radius: 300px;
+        border: 0;
+        outline: none;
+        color: #fff;
+    }
+    
+    .play {
+        background: #000;
+    }
+    
+    .reset {
+        background: red;
+    }
+    
+    .replay {
+        background: rgb(39, 83, 228);
+    }
+    
+    button:hover {
+        color: #ddd;
+    }
+    
+    button:active {
+        color: rgb(141, 135, 135);
+    }
+    
+    .mole {
+        transform: scale(1, 0);
+    }
+    
+    .mole-active {
+        transform: scale(1, 1);
+        transform-origin: bottom;
+        transition: transform .5s linear;
+    }
+    
+    .playDisplay {
+        display: none;
+    }
+    
+    .resetDisplay {
+        display: none;
+    }
+    
+    .title-timer {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1 class="title-header">Catch Me</h1>
+        <h2 class="title-timer">timer <span class="timer">20</span></h2>
+        <h2 class="title-score">score<span class="score">0</span></h2>
+        <h2 class="no_moles">Moles <span class="moles">0</span></h2>
+        <div class="grid">
+            <div class="row">
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="1" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="2" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="3" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="4" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="5" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="6" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="7" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="8" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="9" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="10" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="11" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="12" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="13" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="14" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="15" alt="">
+
+                </div>
+                <div class="square">
+                    <img src="hole.png" class="hole" alt="">
+                    <img src="cartoon.png" class="mole" id="16" alt="">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="control-container">
+            <button class="play ">start</button>
+            <button class="reset ">reset</button>
+
+        </div>
+    </div>
+
+    <script>
+        var Catch = document.querySelector('.title-header');
+        var moles = document.querySelectorAll('.mole');
+        var scoreContainer = document.querySelector('.score');
+        var timerContainer = document.querySelector('.timer');
+        var Moles = document.querySelector('.moles')
+        var play = document.querySelector(".play")
+        var reset = document.querySelector(".reset")
+        var replay = document.querySelector(".re")
+        var counter = timerContainer.textContent;
+        var random;
+        var hitPosition;
+        var moleArr = Array.prototype.slice.call(moles);
+        let score = 0;
+        let interval;
+
+
+
+        let count = 0;
+
+        function randomTime(min, max) {
+            return Math.round(Math.random() * (max - min) + min)
+        }
+        time = randomTime(200, 1000);
+
+        function renderGame(event) {
+
+            moleArr.forEach(curr => {
+
+                curr.classList.remove('mole-active')
+
+            });
+            random = Math.floor(Math.random() * moleArr.length);
+            moleArr[random].classList.add('mole-active')
+            hitPosition = moleArr[random].id;
+            count++;
+            Moles.textContent = count;
+        };
+
+
+        function renderScore() {
+            moleArr.forEach(curr => {
+                curr.addEventListener("click", function() {
+                    if (hitPosition == curr.id) {
+                        score++;
+
+                        scoreContainer.innerHTML = score;
+                    }
+                })
+
+            });
+        };
+        renderScore()
+
+        function renderTimer() {
+            if (counter > 0) {
+                counter--;
+                timerContainer.textContent = counter;
+            } else {
+                clearInterval(interval);
+                moleArr[random].classList.remove('mole-active')
+            }
+        }
+
+        function update() {
+            renderGame();
+            renderTimer();
+        };
+
+        play.addEventListener("click", function() {
+            if (!interval) {
+                interval = setInterval(update, time)
+                play.classList.add('playDisplay')
+            }
+
+        });
+        reset.addEventListener('click', function() {
+            location.reload();
+            reset.classList.add('resetDisplay')
+        })
+        reset.addEventListener('click', function() {
+
+        })
+    </script>
+</body>
+
+</html>
